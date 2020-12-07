@@ -31,12 +31,11 @@ public class ApiCalls {
             public void onResponse(Call<Status> call, Response<Status> response) {
                 if(response.code() == 200 && response.isSuccessful()) {
 
-                    //Updates values and posts it
-                    //Post triggers fucntion in activty and updates ui
+            
                     EventBus.getDefault().post(new UpdateEvent.UpdateStatus(response.body().getTemperature(),
                             response.body().getHumidity()));
                 }else{
-                    Log.e("ERROR","update call  status does not return 200 status:" + response.code());
+                    Log.e("ERROR","update call  status didnt return 200 status:" + response.code());
 
                 }
             }
@@ -59,8 +58,7 @@ public class ApiCalls {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        /*JsonParser jsonParser = new JsonParser();
-        gsonObject = (JsonObject) jsonParser.parse(newBody.toString());*/
+       
 
         Call<ResponseBody> ledSwitchCall = apiService.switchLEDCall(status);
 
@@ -73,7 +71,7 @@ public class ApiCalls {
 
                     Log.e("LED","LED SWITCHED ON SERVER SIDE");
                 }else{
-                    Log.e("ERROR","led switch call  status does not return 200 status:" + response.code() + response.toString());
+                    Log.e("ERROR","led switch call status didnt return 200 status:" + response.code() + response.toString());
 
                 }
             }
@@ -92,7 +90,7 @@ public class ApiCalls {
 
     }
 
-   /* public String gunlukDurumCall(final Context context) {
+   public String gunlukDurumCall(final Context context) {
 
         final String[] result = new String[1];
 
@@ -102,10 +100,8 @@ public class ApiCalls {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.code() == 200 && response.isSuccessful()) {
-
-
-
-
+                    //Arayuze aktaırılacak
+                    
                 }else{
                     Log.e("ERROR","gunluk durum call  status does not return 200 status:" + response.code());
 
@@ -114,13 +110,13 @@ public class ApiCalls {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e("ERROR","Gunluk Durum e Call Failed");
+                Log.e("ERROR","Gunluk Durum Call Failed");
             }
         });
 
         return result[0];
 
 
-    }*/
+    }
 
 }
