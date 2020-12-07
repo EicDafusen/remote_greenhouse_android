@@ -20,7 +20,6 @@ import org.greenrobot.eventbus.Subscribe;
 
 
 
-
 public class MainActivity extends AppCompatActivity {
 
 
@@ -37,12 +36,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
         nemTV = findViewById(R.id.nem_tv);
         dereceTV = findViewById(R.id.derece_tv);
         ledSwitch = findViewById(R.id.switch1);
-       apiCalls = new ApiCalls();
+        apiCalls = new ApiCalls();
 
 
        ledSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -55,14 +52,8 @@ public class MainActivity extends AppCompatActivity {
                    apiCalls.ledToggleCall(0);
                    Log.e("LED","LED SWITCHED ON");
                }
-
-
            }
        });
-
-
-
-
 
 
     }
@@ -92,8 +83,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,ChartActivity.class);
         startActivity(intent);
 
-
-
     }
 
     public void sicaklikButton(View view) {
@@ -102,14 +91,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //Subscribes to update status event
-    //When api call post a change this function will trigger
+    //Subscribe update status event
     @Subscribe
     public  void onStatusUpdate(UpdateEvent.UpdateStatus event){
         dereceTV.setText(event.getTemp()+" C");
         nemTV.setText("% "+event.getHumid());
         progress.dismiss();
-
 
     }
 
