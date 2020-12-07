@@ -45,15 +45,6 @@ public class ChartActivity extends AppCompatActivity {
 
         lineChart = findViewById(R.id.lineChart);
 
-        /*FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
         GunlukDurumCall call = new GunlukDurumCall();
         call.execute();
     }
@@ -78,11 +69,6 @@ public class ChartActivity extends AppCompatActivity {
 
         lineDataSet.setColors(ColorTemplate.PASTEL_COLORS);
 
-
-
-
-
-
         LineData lineData = new LineData(xData,lineDataSet);
 
         lineData.setValueTextSize(13f);
@@ -90,15 +76,13 @@ public class ChartActivity extends AppCompatActivity {
 
         lineChart.setData(lineData);
 
-
         lineChart.setDragEnabled(true);
         lineChart.setSaveEnabled(true);
 
         XAxis xAxis = lineChart.getXAxis();
         xAxis.resetLabelsToSkip();
-
+        
         lineChart.invalidate();
-
 
     }
 
@@ -162,9 +146,6 @@ public class ChartActivity extends AppCompatActivity {
 
             }else{
 
-
-
-
                 try {
                     JSONArray jsonArray = new JSONArray(result);
 
@@ -174,10 +155,6 @@ public class ChartActivity extends AppCompatActivity {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         sicakliklar.add(Float.valueOf(jsonObject.getInt("sicaklik")));
                         saat.add(jsonObject.getString("timeStamp")) ;
-
-                        Log.e("ERROR",sicakliklar.toString());
-                        Log.e("ERROR",saat.toString());
-
 
                         drawLineChart(sicakliklar,saat);
 
